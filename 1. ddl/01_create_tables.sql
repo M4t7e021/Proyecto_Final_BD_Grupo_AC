@@ -7,7 +7,8 @@ telefono varchar(20) unique not null
 
 create table tipo_habitacion(
 id_tipo serial primary key,
-nombre_tipo varchar(100) check (nombre_tipo in ('Simple' , 'Doble' , 'Suite')),
+nombre_tipo varchar(100) 
+check (nombre_tipo in ('Simple' , 'Doble' , 'Suite')),
 precio_noche decimal(10,2) check (precio_noche > 0 ),
 capacidad int check (capacidad > 0 )
 );
@@ -41,21 +42,24 @@ id_reservacion serial primary key,
 fecha_reserva date default current_date,
 fecha_inicio date not null,
 fecha_fin date not null,
-estado varchar(20),
+estado varchar(20) default 'Activa' 
+check (estado in ('Activa' , 'Cancelada' , 'Finalizada')),
 id_huesped int not null,
 id_habitacion int not null,
 
 foreign key (id_huesped)
 references huesped(id_huesped),
 foreign key (id_habitacion)
-references habitacion(id_habitacion)
+references habitacion(id_habitacion),
+check (fecha_fin > fecha_inicio)
 );
 
 create table empleado(
 id_empleado serial primary key,
-nombre varchar(100),
-cargo varchar(50),
-telefono varchar(15)
+nombre varchar(100) not null,
+cargo varchar(50) 
+check (cargo in ('Administrador' , 'Recepcionista' , 'Gerente')),
+telefono varchar(15) unique
 );
 
 create table checkin_checkout(
@@ -73,15 +77,15 @@ references empleado(id_empleado)
 
 create table servicio(
 id_servicio serial primary key,
-nombre varchar(100),
-precio decimal(10,2)
+nombre varchar(100) unique not null,
+precio decimal(10,2) check (precio > 0)
 );
 
 create table consumo_servicio(
 id_consumo serial primary key,
-cantidad int,
-subtotal decimal(10,2),
-fecha_consumo date,
+cantidad int check (cantidad > 0),
+subtotal decimal(10,2) check (subtotal >= 0),
+fecha_consumo date default current_date,
 id_servicio int not null,
 id_reservacion int not null,
 
@@ -93,10 +97,11 @@ references reservacion(id_reservacion)
 
 create table factura(
 id_factura serial primary key,
-fecha_factura date,
-total decimal(10,2),
-metodo_pago varchar(30),
-id_reservacion int not null,
+fecha_factura date default current_date,
+total decimal(10,2) check (total >= 0),
+metodo_pago varchar(30) 
+check (metodo_pago in ('Efectivo' , 'Tarjeta' , 'Transferencia')),
+id_reservacion int unique,
 
 foreign key (id_reservacion)
 references reservacion(id_reservacion)
