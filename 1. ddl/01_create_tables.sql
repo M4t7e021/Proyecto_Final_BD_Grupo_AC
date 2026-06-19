@@ -35,6 +35,7 @@ apellido varchar(50) not null,
 dui varchar(10) unique not null,
 telefono varchar(15),
 correo varchar(100) unique not null
+check(correo like '%@%')
 );
 
 create table reservacion(
@@ -65,8 +66,9 @@ telefono varchar(15) unique
 create table checkin_checkout(
 id_check serial primary key,
 fecha_checkin timestamp,
-fecha_checkout timestamp,
-id_reservacion int not null,
+fecha_checkout timestamp
+check(fecha_checkout is null or fecha_checkout > fecha_checkin),
+id_reservacion int UNIQUE not null,
 id_empleado int not null,
 
 foreign key (id_reservacion)

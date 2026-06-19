@@ -3,12 +3,13 @@ create or replace function verificar_disponibilidad()
 returns trigger as 
 $$
 begin 
-	if exists(select 1 from reservacion where id_habitacion = new.id_habitacion  
+	if exists(select 1 from reservacion where id_habitacion = new.id_habitacion 
+	and estado <> 'Cancelado' 
     and (new.fecha_inicio <= fecha_fin and new.fecha_fin >= fecha_inicio)) 
-then 
-raise exception 'La habitacion se encuentra reservada para esas fechas'; 
+then raise exception 'La habitacion se encuentra reservada para esas fechas'; 
 end if;
 return new;
+
 end;
 $$
 
