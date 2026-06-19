@@ -1,4 +1,3 @@
-===============================================================
 --  Sistema de Gestión de Hotel
 --  Tablas: hotel, tipo_habitacion, habitacion, servicio, empleado
 -- ===============================================================
