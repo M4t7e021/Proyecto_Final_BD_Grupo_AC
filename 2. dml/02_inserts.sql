@@ -23,16 +23,16 @@ VALUES
 -- =============================================================
 INSERT INTO habitacion (numero, piso, estado, id_hotel, id_tipo)
 VALUES
-('101', 1, 'Ocupada',        1, 1), 
-('102', 1, 'Ocupada',        1, 2), 
-('103', 1, 'Disponible',     1, 1),  
-('201', 2, 'Ocupada',        1, 3),  
-('202', 2, 'Disponible',     1, 2),  
-('203', 2, 'Ocupada',        1, 3),  
-('301', 3, 'Mantenimiento',  1, 1),  
-('302', 3, 'Disponible',     1, 2),  
-('303', 3, 'Disponible',     1, 3),  
-('104', 1, 'Disponible',     1, 2);  
+('H-111', 1, 'Ocupada',        1, 1), 
+('H-112', 1, 'Ocupada',        1, 2), 
+('H-113', 1, 'Disponible',     1, 1),  
+('H-114', 2, 'Ocupada',        1, 3),  
+('H-115', 2, 'Disponible',     1, 2),  
+('H-116', 2, 'Ocupada',        1, 3),  
+('H-117', 3, 'Mantenimiento',  1, 1),  
+('H-118', 3, 'Disponible',     1, 2),  
+('H-119', 3, 'Disponible',     1, 3),  
+('H-120', 1, 'Disponible',     1, 2);  
 
 -- =============================================================
 -- Tabla - huesped  (6 huéspedes)
@@ -53,12 +53,12 @@ VALUES
 -- =============================================================
 INSERT INTO reservacion (fecha_reserva, fecha_inicio, fecha_fin, estado, id_huesped, id_habitacion)
 VALUES
-('2025-05-01', '2025-05-05', '2025-05-08', 'Finalizada', 1, 1),  -- Carlos    → hab 101 Simple
-('2025-05-03', '2025-05-10', '2025-05-14', 'Finalizada', 2, 2),  -- Sofía     → hab 102 Doble
-('2025-05-06', '2025-05-12', '2025-05-15', 'Cancelada',  3, 3),  -- Andrés    → hab 103 Simple
-('2025-05-08', '2025-05-20', '2025-05-23', 'Finalizada', 4, 4),  -- Valentina → hab 201 Suite
-('2025-05-10', '2025-06-01', '2025-06-05', 'Activa',     5, 6),  -- Diego     → hab 203 Suite
-('2025-05-12', '2025-06-03', '2025-06-07', 'Activa',     6, 2);  -- Mariana   → hab 102 Doble
+('2025-05-01', '2025-05-05', '2025-05-08', 'Finalizada', 1, 7),  -- Carlos    → hab 101 Simple
+('2025-05-03', '2025-05-10', '2025-05-14', 'Finalizada', 2, 8),  -- Sofía     → hab 102 Doble
+('2025-05-06', '2025-05-12', '2025-05-15', 'Cancelada',  3, 9),  -- Andrés    → hab 103 Simple
+('2025-05-08', '2025-05-20', '2025-05-23', 'Finalizada', 4, 10),  -- Valentina → hab 201 Suite
+('2025-05-10', '2025-06-01', '2025-06-05', 'Activa',     5, 15),  -- Diego     → hab 203 Suite
+('2025-05-12', '2025-06-03', '2025-06-07', 'Activa',     6, 7);  -- Mariana   → hab 102 Doble
 
 -- =============================================================
 -- Tabla - checkin_checkout

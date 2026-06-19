@@ -48,10 +48,32 @@ end;
 $$;
 
 select * from reservacion;
+select * from huesped;
+select * from habitacion;
 select * from empleado;
 select * from servicio;
 select count(*) from reservacion;
 select * from consumo_servicio where id_reservacion = 1;
+SELECT
+    id_reservacion,
+    id_habitacion,
+    fecha_inicio,
+    fecha_fin,
+    estado
+FROM reservacion
+ORDER BY id_habitacion, fecha_inicio;
+
+SELECT
+id_reservacion,
+id_habitacion,
+fecha_inicio,
+fecha_fin,
+estado
+FROM reservacion
+ORDER BY id_habitacion;
+
+SELECT COUNT(*)
+FROM reservacion;
 
 call realizar_checkout(1, 'Tarjeta');
 
