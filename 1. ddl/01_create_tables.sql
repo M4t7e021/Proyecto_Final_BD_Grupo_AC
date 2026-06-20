@@ -103,11 +103,14 @@ fecha_factura date default current_date,
 total decimal(10,2) check (total >= 0),
 metodo_pago varchar(30) 
 check (metodo_pago in ('Efectivo' , 'Tarjeta' , 'Transferencia')),
-id_reservacion int unique,
+id_reservacion int,
 
 foreign key (id_reservacion)
-references reservacion(id_reservacion)
+references reservacion(id_reservacion),
+constraint uq_factura_reservacion
+unique(id_reservacion)
 );
+
 
 
 

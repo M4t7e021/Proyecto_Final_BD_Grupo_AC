@@ -39,3 +39,16 @@ from factura fac
 where extract(year from fac.fecha_factura) = extract(year from current_date)
 group by to_char(fac.fecha_factura, 'YYYY-MM')
 order by mes;
+-- ===============================================================
+-- Se consulta la facturacion
+-- =============================================================== 
+select 
+f.id_factura as numero_factura,
+f.fecha_factura,
+f.total,
+f.metodo_pago,
+h.nombre || ' ' || h.apellido as nombre_huesped
+from factura f 
+inner join reservacion r on f.id_reservacion = r.id_reservacion 
+inner join huesped h on r.id_huesped = h.id_huesped 
+order by f.fecha_factura desc;
